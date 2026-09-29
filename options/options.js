@@ -390,6 +390,11 @@ chrome.storage.sync.get(kOptionDefaults, (result) => {
         childOption.disabled = !result.options_enable_speedy_event_panel;
     }
 
+    let turnNotificationsChildOptions = document.getElementsByClassName("js-requires-turn-notifications");
+    for (let childOption of turnNotificationsChildOptions) {
+        childOption.disabled = !result.options_enable_turn_notifications;
+    }
+
     let inputs = document.querySelectorAll("input");
     for (let input of inputs) {
         input.addEventListener("change", (event) => {
@@ -400,6 +405,11 @@ chrome.storage.sync.get(kOptionDefaults, (result) => {
             let moveplannerPlusDisabled = !parsedOptions.options_enable_moveplanner_plus;
             for (let childOption of moveplannerPlusChildOptions) {
                 childOption.disabled = moveplannerPlusDisabled;
+            }
+
+            let turnNotificationsDisabled = !parsedOptions.options_enable_turn_notifications;
+            for (let childOption of turnNotificationsChildOptions) {
+                childOption.disabled = turnNotificationsDisabled;
             }
 
             let speedyEventPanelDisabled = !parsedOptions.options_enable_speedy_event_panel;
