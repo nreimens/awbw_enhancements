@@ -20,7 +20,8 @@
                 "lib/options_reader.js",
                 "content_scripts/toggle_calculator_shortcut_script.js",
                 "content_scripts/rate_limit_workaround_script.js",
-                "content_scripts/speedy_event_panel_script.js"
+                "content_scripts/speedy_event_panel_script.js",
+                "content_scripts/turn_notifications_script.js"
             ]
         }, {
             "matches": ["https://awbw.amarriner.com/damage.php"],
