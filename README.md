@@ -10,6 +10,7 @@ and for Firefox [here](https://addons.mozilla.org/en-US/firefox/addon/awbw-enhan
 Its current functionality includes:
 
 1. Configurable keyboard shortcuts for replays.
+    1. Optional desktop notifications when it becomes your turn in an open game.
 2. Several quality of life improvements to the move planner ("Moveplanner Plus"), including:
     1. Movement range previews for the selected unit.
     2. Savestate "quick save" snapshots that let you snapshot and restore states without having to download a full savestate file.
