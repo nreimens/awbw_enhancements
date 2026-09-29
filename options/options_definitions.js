@@ -20,6 +20,25 @@ let kCheckOptionsMapping = [
             ``,
         ],
     }, {
+        id: "enable-turn-notifications",
+        name: "options_enable_turn_notifications",
+        default: false,
+        label: "Enable Desktop Turn Notifications",
+        description: [
+            `Shows a desktop notification when it becomes your turn in a game you have open. The browser ` +
+            `will ask for notification permission the first time a game page loads with this enabled.`,
+            `Notifications only work while the game page is open in a tab.`
+        ],
+    }, {
+        id: "enable-turn-notifications-only-when-hidden",
+        name: "options_turn_notifications_only_when_hidden",
+        requires: ["js-requires-turn-notifications"],
+        default: true,
+        label: "Only Notify When the Game Tab Is in the Background",
+        description: [
+            ``,
+        ],
+    }, {
         id: "enable-automatic-replay-renaming",
         name: "options_enable_automatic_replay_renaming",
         requires: ["js-requires-chrome"],
