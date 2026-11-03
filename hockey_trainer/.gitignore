@@ -1,0 +1,6 @@
+__pycache__/
+*.egg-info/
+.venv/
+hwcheck_out/
+calibration.json
+.pytest_cache/

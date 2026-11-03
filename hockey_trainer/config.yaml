@@ -1,0 +1,62 @@
+# Laser hockey trainer configuration. Angles are degrees.
+# pan:  0 = centered, + = counter-clockwise seen from above (flip with invert).
+# tilt: 0 = beam straight down, + = beam rising away from vertical.
+# There are no endstops: power the rig up with the head pointing straight down
+# and centered; that pose is step-count zero for the session.
+
+motors:
+  style: DOUBLE          # SINGLE | DOUBLE | INTERLEAVE | MICROSTEP (adafruit_motor.stepper)
+  step_delay_s: 0.004    # per step; 28BYJ-48 stalls below ~2 ms at 5 V
+  pan:
+    channel: 1           # 1 = HAT terminals M1/M2, 2 = M3/M4
+    steps_per_rev: 2048
+    invert: false
+    backlash_deg: 1.5
+    limit_deg: [-45.0, 45.0]
+  tilt:
+    channel: 2
+    steps_per_rev: 2048
+    invert: false
+    backlash_deg: 1.5
+    limit_deg: [5.0, 45.0]   # upper = hard cap on beam rise; lower > 0 because pan is unobservable
+                             # at exactly straight-down (the dot does not move with pan)
+
+laser:
+  gpio_bcm: 17           # BCM number; drive an NPN/MOSFET, never the laser directly
+  active_high: true
+  pwm: false             # true = PWM dimming via gpiozero.PWMLED
+  brightness: 1.0
+  max_on_s: 10.0         # watchdog: forced off after this long
+
+camera:
+  device: auto           # auto | /dev/videoN | integer index
+  name_hint: OV9281      # substring matched against /sys/class/video4linux/*/name
+  width: 640
+  height: 400
+  fps: 120
+  fourcc: MJPG
+  exposure: 40           # manual exposure (V4L2 units), null = leave camera default
+  flush_frames: 3        # stale buffered frames to drop before a measurement
+
+vision:
+  dot_diff_threshold: 40   # min (laser-on minus laser-off) brightness step
+  dot_min_area: 1
+  dot_max_area: 150
+  puck_mode: bright        # bright | bgsub
+  puck_threshold: 200
+  puck_min_area: 40        # must exceed dot_max_area so the dot is never a puck
+  puck_max_area: 5000
+
+calibration:
+  file: calibration.json
+  pan_points: 7
+  tilt_points: 5
+  settle_s: 0.4
+
+game:
+  hit_radius_px: 30
+  dwell_s: 0.15
+  target_timeout_s: 15.0
+  min_jump_px: 100
+  edge_margin_px: 40
+  settle_s: 0.4
